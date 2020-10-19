@@ -14,6 +14,10 @@ namespace Microsoft.BotBuilderSamples.Bots
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             var replyText = $"{turnContext.Activity.Text}";
+            if (replyText == "")
+                {
+                 replyText = "Sorry! I didn't get you!";
+                }
             await turnContext.SendActivityAsync(MessageFactory.Text(replyText, replyText), cancellationToken);
         }
 
