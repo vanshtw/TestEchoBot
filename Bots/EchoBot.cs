@@ -18,12 +18,18 @@ namespace Microsoft.BotBuilderSamples.Bots
                 {
                  replyText = "Sorry! I didn't get you!";
                 }
+
+            if (replyText.StartsWith(":") && replyText.Length == 2)
+            {
+                replyText = "Wow! An Emo!! Kuro is delighted! " + replyText;
+            }
+
             await turnContext.SendActivityAsync(MessageFactory.Text(replyText, replyText), cancellationToken);
         }
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
-            var welcomeText = "Hi, My name is EchoBot! Welcome to this channel!";
+            var welcomeText = "Hey, I'm Kuro! Welcome to my channel";
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
